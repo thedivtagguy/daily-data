@@ -4,8 +4,8 @@ library(ggplot2)   # Plot vizualization
 library(hrbrthemes)# Theming goodness
 library(patchwork) # Combining graphs
 library(ggtext)    # Using HTML in ggplot text
-library(grImport2) # For logo
-library(viridis)
+library(gridExtra) # functions to work with pictures
+library(grid)
 setwd("D:/DailyData")
 dd <- "dd01_kharifAndRabiCrops"
 # Load in the data
@@ -92,7 +92,6 @@ area <- data %>% filter(Type != "Total") %>%
   labs(x = NULL, y = NULL,
        fill = glue::glue("Area ({area_unit})"))
 
-t <- grid::roundrectGrob()
 
 
 
@@ -111,7 +110,7 @@ yield_area_year <- data %>%
   facet_wrap(~Type, scales = "free") +
   guides(colour  = FALSE)+
   labs(
-    subtitle = "...so yes, we're producing more than ever before in the same amount of area! <br> &nbsp;"
+    subtitle = "...so yes, we're producing more than ever before <br> in the same amount of area! <br> &nbsp;"
   )+
   theme(
     text = element_text(color = "white"),
@@ -132,17 +131,21 @@ yield_area_year <- data %>%
     axis.ticks = element_line(color = "gray50"),
     axis.text.y = element_markdown(color = "white"),
     strip.text = element_markdown(color = "white"),
-    legend.position = "bottom"
+    axis.title.y = element_text(margin = margin(r =10), size = 10),
+    legend.position = "bottom",
+    plot.caption = element_markdown(color = "white")
+    
   ) + 
-  labs(x = NULL, y = NULL,
-       fill = glue::glue("Yield ({yield_unit})"))
+  labs(x = NULL, y = glue::glue("Yield ({yield_unit})"),
+       caption = glue::glue("<img src ='./resources/resize/white_logo.png' style='height: 1px;'/> Source: Agricultural at a Glance, GOI, 2019")) 
 
 
-# Combine them together
+
+
+
 yield / area / yield_area_year
-
 
 # Save
 plot_name <- "kharif_rabi"
-ggsave(glue::glue("./{dd}/{plot_name}.png"), width = 18, height = 30, units = "cm")
+ggsave(glue::glue("./{dd}/{plot_name}.png"), width = 20, height = 30, units = "cm")
 
