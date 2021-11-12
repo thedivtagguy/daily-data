@@ -10,4 +10,4 @@ Godspeed.
 
 | dd 	| Description                                 	| Tools                          	| Link                              	|
 |----	|---------------------------------------------	|--------------------------------	|-----------------------------------	|
-| 01 	| Visualizing Kharif and Rabi Crop Production 	| R, ggplot, patchwork, heatmaps 	| [dd01](/dd_01_kharifAndRabiCrops/README.md) 	|
+| 01 	| Visualizing Kharif and Rabi Crop Production 	| R, ggplot, patchwork, heatmaps 	| [dd01](/tree/master/dd01_kharifAndRabiCrops) 	|
