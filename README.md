@@ -5,3 +5,8 @@ This is an attempt at doing some sort of visualization, data processing, wrangli
 This repository acts as a store for all such explorations. 
 
 Godspeed.
+
+## Table of Contents
+| dd 	| Description                                 	| Tools                          	| Link                              	|
+|----	|---------------------------------------------	|--------------------------------	|-----------------------------------	|
+| 01 	| Visualizing Kharif and Rabi Crop Production 	| R, ggplot, patchwork, heatmaps 	| [dd01](/dd_01_kharifAndRabiCrops) 	|
