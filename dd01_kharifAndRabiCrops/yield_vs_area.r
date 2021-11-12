@@ -1,4 +1,10 @@
 # Load Libraries
+
+#############################
+# Theme forked from https://twitter.com/issa_madjid/status/1458199645801357318
+# by Issa Madjid
+#############################
+
 library(tidyverse) # Because I don't know how else
 library(ggplot2)   # Plot vizualization
 library(hrbrthemes)# Theming goodness
@@ -110,7 +116,7 @@ yield_area_year <- data %>%
   facet_wrap(~Type, scales = "free") +
   guides(colour  = FALSE)+
   labs(
-    subtitle = "...so yes, we're producing more than ever before <br> in the same amount of area! <br> &nbsp;"
+    subtitle = "...which means we're producing more than ever before <br> in the same amount of area! <br> &nbsp;"
   )+
   theme(
     text = element_text(color = "white"),
@@ -133,17 +139,15 @@ yield_area_year <- data %>%
     strip.text = element_markdown(color = "white"),
     axis.title.y = element_text(margin = margin(r =10), size = 10),
     legend.position = "bottom",
-    plot.caption = element_markdown(color = "white")
+    plot.caption = element_markdown(color = "white", margin = margin(t = 10, b = 2))
     
   ) + 
   labs(x = NULL, y = glue::glue("Yield ({yield_unit})"),
-       caption = glue::glue("<img src ='./resources/resize/white_logo.png' style='height: 1px;'/> Source: Agricultural at a Glance, GOI, 2019")) 
-
-
-
-
+       caption = glue::glue("Source: Agricultural at a Glance, GOI, 2019 <br>Vizualization: @thedivtagguy")) 
 
 yield / area / yield_area_year
+
+
 
 # Save
 plot_name <- "kharif_rabi"
