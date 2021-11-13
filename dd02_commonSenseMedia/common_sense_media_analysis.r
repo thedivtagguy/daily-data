@@ -5,7 +5,7 @@ library(patchwork) # Combining graphs
 library(ggtext)    # Using HTML in ggplot text
 library(gridExtra) # functions to work with pictures
 library(grid)
-
+library(corpus)
 
 dd <- "dd02_common_sense_media"
 
@@ -37,22 +37,41 @@ data %>%
     title = "Parents say 16, Kids say 12...",
     subtitle = "Examining the mean difference in viewing ages <br> recommended by parents versus kids based on genre"
   ) +
+  annotate(
+    geom = "curve", x = -0.02, y = 21.5, xend = -0.4, yend = 18, 
+    curvature = .3, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate(geom = "text", x = -0.7, y = 17, size = 3.5, label = "Parents say kids need to be older", hjust = "left") +
+  annotate(
+    geom = "curve", x = 0.02, y = 1, xend = 0.4, yend = 3, 
+    curvature = .3, arrow = arrow(length = unit(2, "mm"))
+  ) +
+  annotate(geom = "text", x = 0.15, y = 3.8, size = 3.5, label = "Kids say they need to be older", hjust = "left") +
+  
   theme(
-    axis.title.x = element_markdown(margin = margin(
-      t = 0.5, b = 0.5, unit = "cm"
-    )),
-    plot.title = element_markdown(margin = margin(
-      t = 0.2, b = 0.2, unit = "cm"
-    )),
-    plot.subtitle = element_markdown(margin = margin(b = 0.5, unit = "cm"))
-  )
+    plot.title = element_markdown(margin = margin(t = 0.2, b = 0.2, unit = "cm")),
+    plot.subtitle = element_markdown(margin = margin(b = 0.5, unit = "cm")),
+    plot.background = element_rect(fill = "#FEE1C7"),
+    axis.title.x = element_markdown(margin = margin(t = 0.5, b = 0.5, unit = "cm" ))
+    ) 
 
 # What words are associated with what ratings for language?
-language <- data %>%
+data %>%
   group_by(language_rating) %>%
   drop_na() %>%
   summarise(words = 
     str_extract_all(
-    str_replace_all(str_to_lower(language_text), '[.,]', ""), '"(.*?)"'
+    str_replace_all(
+      str_to_lower(language_text), '[.,]', ""), '"(.*?)"'
   )) %>%
-  unnest(cols = c(words))
+  unnest(cols = c(words)) %>% 
+  mutate(words = str_replace_all(words, '"',"")) %>%
+  na_if("") %>% 
+  mutate(words = trimws(words, which = "both")) %>% 
+  drop_na() %>%
+  count(language_rating, words, sort = TRUE) %>%
+  slice_max(order_by = n, n = 4) %>%
+  arrange(desc(language_rating, n)) %>% 
+  filter(words != "" & language_rating != "0") %>% 
+  ggplot(aes())
+  
