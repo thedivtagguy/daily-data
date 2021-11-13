@@ -48,7 +48,7 @@ yield <- data %>%
   # We have too many years, lets make it cleaner
   scale_x_discrete(expand=c(0,0),
                    breaks=c("1966","1976","1986","1996","2006","2016"))+
-  scale_fill_distiller(palette = "RdPu") + 
+  scale_fill_distiller(palette = "RdPu", direction = 1) + 
   theme_minimal() + 
   theme(
     text = element_text(color = "white"),
@@ -80,7 +80,7 @@ area <- data %>% filter(Type != "Total") %>%
   facet_wrap( ~ Type, scales = "free")+ 
   scale_x_discrete(expand=c(0,0),
                    breaks=c("1966","1976","1986","1996","2006","2016"))+
-  scale_fill_distiller(palette = "RdPu") + 
+  scale_fill_distiller(palette = "RdPu", direction = 1) + 
   theme_minimal() + 
   theme(
     text = element_text(color = "white"),
