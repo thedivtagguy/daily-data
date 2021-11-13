@@ -15,6 +15,7 @@ library(patchwork) # Combining graphs
 library(ggtext)    # Using HTML in ggplot text
 library(gridExtra) # functions to work with pictures
 library(grid)
+
 setwd("D:/DailyData")
 dd <- "dd01_kharifAndRabiCrops"
 # Load in the data
