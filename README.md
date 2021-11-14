@@ -11,3 +11,4 @@ Godspeed.
 | dd 	| Description                                 	| Tools                          	| Link                              	|
 |----	|---------------------------------------------	|--------------------------------	|-----------------------------------	|
 | 01 	| Visualizing Kharif and Rabi Crop Production 	| R, ggplot, patchwork, heatmaps 	| [dd01](/dd01_kharifAndRabiCrops)   	|
+| 02 	| Common Sense Media Reviews and Rating 	| R, Python, spaCy, named entity recognition, web scraping 	| [dd01](/dd02_commonSenseMedia)   	|
