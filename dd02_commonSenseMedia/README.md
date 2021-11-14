@@ -7,6 +7,19 @@
 
 ![graph showing visualization of common sense media data](common_sense.png "Common Sense Media Viz")
 
+### Log 
+
+- Wrote a scraper to collect data from Common Sense Media's website
+- Tidied data, cleaned up text
+- Wrote script to identify named entities and count them by genre
+- Plotted Mean age difference, learnt how to use annotations
+- Developed color palette from coolors.co
+- Themed age plot
+- Plotted words in ratings, learnt geom_text()
+- Plotted gender division in genres
+- Patchwork plot
+- Cleaned up font sizes, margins
+- Generated high-res image
 
 ## License 
 
