@@ -1,0 +1,24 @@
+{
+  "name": "cropyieldsd3",
+  "version": "0.0.0",
+  "description": "",
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19",
+    "vite": "^2.6.4"
+  },
+  "dependencies": {
+    "d3": "^7.1.1"
+  }
+}

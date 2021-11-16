@@ -36,7 +36,8 @@ yield_unit <- "Kg/Hectare"
 
 #######################################################################################
 #                                                                                     #
-#                                                                                     #
+# Question 1: How has the amount of yield changed over the years for each type of     #
+# crop?                                                                               #
 # Plot with a heatmap                                                                 #
 #                                                                                     #
 #######################################################################################
