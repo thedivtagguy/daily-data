@@ -11,11 +11,20 @@ const cropNames = ['Wheat', 'Barley', 'Rice', 'Maize', 'Potatoes'];
 const years = d3.range(1961, 2019);
 
 
-const dropDownYear = d3.select("#chart_area")
-                        .append("select");
+// const dropDownYear = d3.select("#chart_area")
+//                         .append("select");
 
 const dropDownCrop = d3.select("#chart_area")
                         .append("select");
+
+const dropDownYear = d3.select("#chart_area")
+                        .append("input")
+                        .attr("type", "range")
+                        .attr("min", 1961)
+                        .attr("max", 2018)
+                        .attr("value", 1980)
+                        .attr("id", "sliderYear");
+
 
 dropDownYear
   .selectAll("option")
@@ -33,11 +42,14 @@ dropDownCrop
   .attr("value", d => d)
   .text(d => d);
 
+
+  
+
 // Data and scales
 // Create a data array
 const data = [];
 const colorScale = d3.scaleThreshold()
-              .domain([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0])
+              .domain([1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
               .range(d3.schemeBlues[9]);
 
 // Load crop data and create a map
@@ -60,17 +72,8 @@ let svg = d3.select('svg')
     .append('path')
     .attr('d', map)
     .attr('fill', '#ccc')
-    .attr('stroke', '#333')
-    .attr('stroke-width', 0.5)
-    // On hover show the crop name
-    .on('mouseover', function(d) {
-      d3.select(this)
-        .attr('fill', '#f00');
-    })
-    .on('mouseout', function(d) {
-      d3.select(this)
-        .attr('fill', '#ccc');
-    });
+    .attr('stroke', '#eee')
+    .attr('stroke-width', 0.5);
 
   // On click show the crop productio
   function updateMap(year, crop) {
@@ -94,21 +97,20 @@ let svg = d3.select('svg')
     .ease(d3.easeCubicInOut);
   }
 
-  // Update the map when the year changes
-  dropDownYear.on('change', function() {
-    const year = this.value;
-    updateMap(year, 'Wheat');
+  // Function to watch for changes in the dropdown menus
+  function watchDropDowns() {
+    // Get the selected year and crop
+    const year = dropDownYear.property('value');
+    const crop = dropDownCrop.property('value');
+    // Update the map
+    updateMap(year, crop);
   }
-  );
 
-  // Update the map when the crop changes
-  dropDownCrop.on('change', function() {
-    const crop = this.value;
-    updateMap(1961, crop);
-  }
-  );
-  
-  // On load, show the crop production for 1961
+  // Watch for changes in the dropdown menus
+  dropDownYear.on('change', watchDropDowns);
+  dropDownCrop.on('change', watchDropDowns);
+  // Initialize the map
   updateMap(1961, 'Wheat');
+
 
 });
