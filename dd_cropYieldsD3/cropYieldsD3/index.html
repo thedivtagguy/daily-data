@@ -10,13 +10,13 @@
   <body>
 
     <div id="app"></div>
-    <h1 id="hello" class="text-3xl font-bold">Hello</h1>
-    <div id="chart_area">
+    <div id="chart_area" class="flex flex-col items-center justify-items-center">
+        <div id="year_label" class="text-3xl font-bold"></div>
+      <svg class="mx-auto" id="chart" width="1000" height="400"></svg>
+      <div id="info" class="flex flex-row items-center gap-12 justify-items-center">
+</div>
+      <div id="tooltip"></div>
 
-      <div id="map"></div>
-      <p>Hell</p>
-      <svg id="chart" width="1000" height="400"></svg>
-      <div id="tooltip"></div>  
     </div>
   </body>
   <script>
