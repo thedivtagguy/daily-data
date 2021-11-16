@@ -10,8 +10,6 @@ d.get_gender("Bob")
 # Read in the csv from a url and store it in a dataframe
 df = pd.read_csv('https://raw.githubusercontent.com/thedivtagguy/movie-ratings/master/data/movie_data.csv')
 
-
-# Explode df on genres
 df['genres'] = df['genres'].str.split(',')
 out = df.explode('genres')
 

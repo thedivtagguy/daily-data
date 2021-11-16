@@ -219,6 +219,7 @@ gender <- genders %>%
 
 combined <- (mean + language_plot) / gender
 
+
 combined + plot_annotation(
   title = 'Common Sense Media',
   subtitle = 'Common Sense Media (CSM) uses various scales and categories to review and rate movies, <br> such as based on the kind of positive messages, role models, use of language, amount of violence and so on. <br> We can use this information to visualize things such as...',

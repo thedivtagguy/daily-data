@@ -1,13 +1,3 @@
-# Load Libraries
-
-##################################################################################
-#                                                                                #
-# Theme forked from https://twitter.com/issa_madjid/status/1458199645801357318   #
-# by Issa Madjid                                                                 #
-# Github: https://github.com/AbdoulMa/TidyTuesday/tree/main/2021_w46             #
-#                                                                                #
-##################################################################################
-
 library(tidyverse) # Because I don't know how else
 library(ggplot2)   # Plot vizualization
 library(hrbrthemes)# Theming goodness
@@ -33,6 +23,16 @@ data$Year <- gsub("\\-.*", "", data$Year)
 area_unit <- "Million Hectares"
 production_unit <- "Million Tonnes"
 yield_unit <- "Kg/Hectare"
+
+
+#######################################################################################
+#                                                                                     #
+# Question 1: How has the amount of yield changed over the years for each type of crop?
+#                                                                                     #
+# Plot with a heatmap                                                                 #
+#                                                                                     #
+#######################################################################################
+
 
 # Create graph to see the yields
 yield <- data %>% 
@@ -71,7 +71,15 @@ yield <- data %>%
   labs(x = NULL, y = NULL,
        fill = glue::glue("Yield ({yield_unit})"))
 
-# Do the same thing but for area
+
+#######################################################################################
+#                                                                                     #
+# Question 2: How has the amount of area changed over the years for each type of crop?#                                                                                     #
+# Plot with a heatmap                                                                 #
+#                                                                                     #
+#######################################################################################
+
+
 area <- data %>% filter(Type != "Total") %>% 
   mutate(Type = glue::glue("Area under <b>{Type}</b> Crops")) %>% 
   ggplot(aes(Year, Type, fill = Area)) +
@@ -104,8 +112,13 @@ area <- data %>% filter(Type != "Total") %>%
 
 
 
+#######################################################################################
+#                                                                                     #
+# Question 3: Can we see how the amount of yield has increased, with the difference in#
+# area in a single viz?                                                               #
+#                                                                                     #
+#######################################################################################
 
-## Plot small barplots for yield by area
 yield_area_year <- data %>% 
   filter(Type != "Total") %>% 
   arrange(Year) %>% 
@@ -149,11 +162,13 @@ yield_area_year <- data %>%
   labs(x = NULL, y = glue::glue("Yield ({yield_unit})"),
        caption = glue::glue("Source: Agricultural at a Glance, GOI, 2019 <br>Vizualization: @thedivtagguy")) 
 
+# Let us combine all of these plots into one now.
+
 yield / area / yield_area_year
 
 
 
-# Save
+# Save the output.
 plot_name <- "kharif_rabi"
 ggsave(glue::glue("./{dd}/{plot_name}.png"), width = 20, height = 30, units = "cm")
 
