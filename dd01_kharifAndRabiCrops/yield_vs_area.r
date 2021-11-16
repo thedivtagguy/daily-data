@@ -6,6 +6,15 @@ library(ggtext)    # Using HTML in ggplot text
 library(gridExtra) # functions to work with pictures
 library(grid)
 
+
+################################################################
+# Question 1: How has the amount of yield changed over the years for each type of crop?
+# Question 2: How has the amount of area changed over the years for each type of crop?
+# Question 3: How can we visualize this information in one single place and see the change?
+################################################################
+
+
+
 setwd("D:/DailyData")
 dd <- "dd01_kharifAndRabiCrops"
 # Load in the data
@@ -27,7 +36,6 @@ yield_unit <- "Kg/Hectare"
 
 #######################################################################################
 #                                                                                     #
-# Question 1: How has the amount of yield changed over the years for each type of crop?
 #                                                                                     #
 # Plot with a heatmap                                                                 #
 #                                                                                     #
