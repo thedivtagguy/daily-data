@@ -4,12 +4,12 @@
         <meta charset="UTF-8"/>
         <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
         <script type="module" src="/main.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Demo App</title>
     </head>
     <body
         style="background-color:#F0F0EE">
-
         <!-- Section 1 -->
         <section class="px-2 py-32 bg-transparent md:px-0">
             <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
@@ -45,7 +45,7 @@
                             <svg id="chart" width="1000" height="450"></svg>
                         </div>
                     </div>
-                    <div class="w-1/2 space-y-2 md:w-1/3">
+                    <div class="space-y-2 md:w-1/3">
                         <h2 class="mb-5 text-2xl font-medium text-gray-600">
                             <div class="block my-2 text-gray-600 badge badge-outline badge-xl">Section 1</div>
                             Crop yields across the world
@@ -53,62 +53,42 @@
                         <p class="text-lg text-gray-600">
                             This map plots key crop yields across the world between 1961 and 2018. Toggle between crop types to see how their yields have changed over time.
                         </p>
-                        <div class="flex flex-row items-center justify-between py-8">
-                            <h2 class="mb-5 text-lg font-medium text-gray-600">
-                                Crop
-                            </h2>
-                            <div class="relative w-2/3">
-                                <div id="dropDownCrop"></div>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center justify-between">
-                          <h2 class="mb-5 text-lg font-medium text-gray-600">
-                              Year
-                          </h2>
-                          <div class="w-2/3">
-                              <div id="dropDownYear"></div>
+                        <div class="flex py-8">
+                          <div class="flex-grow rounded-tl-lg rounded-bl-lg stat ">
+                              <div class="stat-title">Country</div>
+                              <div id="currentCountry" class="w-4 h-6 text-xl stat-value"></div>
+                              <div class="w-24 stat-actions">
+                                <div class="relative ">
+                                  <div id="dropDownCrop"></div>
+                                  <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                                      <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                  </div>
+                              </div>                              </div>
+                          </div>
+                          <div class="flex-grow w-full rounded-tr-lg rounded-br-lg stat">
+                              <div class="stat-title" id="currentYear"></div>
+                              <div class="w-4 h-6 text-xl stat-value" id="currentYield"></div>
+                              <div class="flex flex-grow space-x-4 stat-actions">
+                                <span class="text-gray-500">1961</span>
+
+                                <div id="dropDownYear"></div>
+                                <span class="text-gray-500">2018</span>
+
+                              </div>
                           </div>
                       </div>
+                        <div class="flex flex-row items-center justify-between py-8">
+                           
+                        </div>
+                        
                         <div id="tooltip"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="flex ">
-            <div id="chart_area" class="flex items-center justify-around mx-auto">
-                <div class="flex flex-col p-8 bg-gray-100 border-4 border-gray-300 border-dashed">
-                    <div class="border stats border-base-300">
-                        <div class="stat">
-                            <div class="stat-title">Account balance</div>
-                            <div class="stat-value">$89,400</div>
-                            <div class="stat-actions">
-                                <button class="btn btn-sm btn-success">Add funds</button>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-title">Current balance</div>
-                            <div class="stat-value">$89,400</div>
-                            <div class="stat-actions">
-                                <button class="btn btn-sm btn-primary">Withdrawal</button>
-                                <button class="btn btn-sm btn-primary">deposit</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div id="dropDownCrop"></div>
-                        <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                            <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                    <div id="dropDownYear"></div>
-                    <div id="tooltip"></div>
-                </div>
-            </div>
-        </div>
+       
     </body>
+   
 </html>
 
