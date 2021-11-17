@@ -169,6 +169,8 @@ Promise.all([
   dropDownYear.on("change", watchDropDowns);
   dropDownCrop.on("change", watchDropDowns);
 
-  // Map initalization
+  // Initialize the map and data for the first time random hover country
   updateMap(2007, "Wheat");
+  // Hover over a country by default
+
 });
