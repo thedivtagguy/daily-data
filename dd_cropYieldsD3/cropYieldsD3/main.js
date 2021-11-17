@@ -1,4 +1,3 @@
-import "./style.css";
 import "tailwindcss/tailwind.css";
 import * as d3 from "d3";
 
@@ -9,26 +8,34 @@ const cropNames = ["Wheat", "Barley", "Rice", "Maize", "Potatoes"];
 // Array of years from 1961 to 2018
 const years = d3.range(1961, 2019);
 
-// const dropDownYear = d3.select("#chart_area")
-//                         .append("select");
-
 const dropDownCrop = d3
-  .select("#info")
+  .select("#dropDownCrop")
   .append("select")
-  .attr("id", "crop_select")
+  .attr("class", "block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500")
   // Defaults to first crop
   .property("value", cropNames[0]);
 
 const dropDownYear = d3
-  .select("#info")
+  .select("#dropDownYear")
   .append("input")
   .attr("type", "range")
+  .attr("class", "range range-primary bg-gray-200 rounded-xl range-lg")
   .attr("min", 1961)
   .attr("max", 2018)
   .attr("value", 2007)
   .attr("id", "sliderYear");
 
 const yearLabel = d3.select("#year_label").append("label").text("Year: ");
+
+// create a tooltip
+var Tooltip = d3
+  .select("#tooltip")
+  .append("div")
+  .attr("class", "flex")
+  // Block height
+  .style("height", "100px")
+  .style("width", "200px")
+  .style("opacity", 0);
 
 dropDownYear
   .selectAll("option")
@@ -70,24 +77,11 @@ Promise.all([
     .projection(d3.geoMercator().scale(100).translate([300, 300]));
   const features = loadData[0].features;
 
-  
-  // create a tooltip
-  var Tooltip = d3.select("#chart_area")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
-
-
-
   // Initialize the map
   let svg = d3
-    .select("svg")
+   // Select svg of id chart
+    .select("#chart")
+    .append("svg")
     .selectAll("path")
     .data(features)
     .enter()
@@ -101,20 +95,29 @@ Promise.all([
         (row) => row.Year === year && row.Crop === crop
       );
       // Get value for this country
-      const value = filteredData.find((row) => row.Country === d.properties.name);
-      
+      const value = filteredData.find(
+        (row) => row.Country === d.properties.name
+      );
+
       return colorScale(value);
     })
     .attr("stroke", "#eee")
     .attr("stroke-width", 0.5);
 
-
+    svg.
+     // Add Title
+    append("text")
+    .attr("x", 0)
+    .attr("y", 0)
+    .style("color", "black")
+    .attr("font-size", "1.5em")
+    .text("Crop yield");
 
 
   // On click show the crop productio
   function updateMap(year, crop) {
     // Update the map
-    yearLabel.text("Year: " + year);
+    yearLabel.text(year);
     svg
       .attr("fill", (d) => {
         // Find the corresponding data row
@@ -132,24 +135,50 @@ Promise.all([
         return "#ccc";
       })
       // Smooth transition between years
-      .on("mouseover", 
-      // Show what country is hovered over
-      function (d) {
+      .on("mouseover", function (d) {
         console.log(d.target.__data__.geometry.id);
         const row = data.find(
           (r) =>
-            r.year === year && r.entity === d.target.__data__.properties.name && r.crop === crop
+            r.year === year &&
+            r.entity === d.target.__data__.properties.name &&
+            r.crop === crop
         );
-        Tooltip
-          .style("opacity", 1)
-         
-          .html("<p> Country: "+ row['entity'] + "<br>" + 
-          "Crop: " + row['crop'] + "<br>" +
-          "Production: " + row['crop_production'] + "</p>");
-      }
-      )
-     ;
-  
+        Tooltip.style("opacity", 1)
+        .attr("class", "text-gray-500")
+        .html(
+          "<p> Country: " +
+            row["entity"] +
+            "<br>" +
+            "Crop: " +
+            row["crop"] +
+            "<br>" +
+            "Production: " +
+            row["crop_production"] +
+            "</p>"
+        );
+        /// Stroke the country
+        d3.select(this).attr("stroke", "#000");
+        d3.selectAll("path").attr("opacity", 0.6);
+        d3.select(this).attr("opacity", 1);
+      })
+      .on("mousemove", function (d) {
+        Tooltip.style("left", d3.event.pageX + 10 + "px").style(
+          "top",
+          d3.event.pageY - 10 + "px"
+        );
+      })
+      .on(
+        "mouseleave",
+
+        function (d) {
+          Tooltip.style("opacity", 0);
+          d3.select(this).attr("stroke", "#eee");
+          d3.selectAll("path").attr("opacity", 1);
+        }
+      );
+
+
+
   }
 
   // Function to watch for changes in the dropdown menus
@@ -166,7 +195,6 @@ Promise.all([
   dropDownYear.on("change", watchDropDowns);
   dropDownCrop.on("change", watchDropDowns);
 
-
-
-
+  // Map initalization
+  updateMap(2007, "Wheat");
 });

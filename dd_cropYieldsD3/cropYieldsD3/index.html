@@ -1,25 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <script type="module" src="/main.js" ></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Demo App</title>
-  </head>
-  <body>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+        <script type="module" src="/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Demo App</title>
+    </head>
+    <body
+        style="background-color:#F0F0EE">
 
-    <div id="app"></div>
-    <div id="chart_area" class="flex flex-col items-center justify-items-center">
-        <div id="year_label" class="text-3xl font-bold"></div>
-      <svg class="mx-auto" id="chart" width="1000" height="400"></svg>
-      <div id="info" class="flex flex-row items-center gap-12 justify-items-center">
-</div>
-      <div id="tooltip"></div>
+        <!-- Section 1 -->
+        <section class="px-2 py-32 bg-transparent md:px-0">
+            <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+                <div class="flex flex-wrap items-center sm:-mx-3">
+                    <div class="w-full md:w-1/2 md:px-3">
+                        <div class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+                                <span class="block xl:inline">Visualizing crop data from</span>
+                                <span class="block text-red-600 xl:inline">around the world</span>
+                            </h1>
+                            <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">Exploring the
+                                <span class="px-1 py-1 bg-gray-200 rounded-lg">tidytuesday/2020/w36</span>
+                                dataset with d3.js</p>
 
-    </div>
-  </body>
-  <script>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
+                            <img src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pd35-03008-l.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=1ff20897fea6160181ebdbb4a94211f6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  </script>
+        <!-- Section 2 -->
+        <section class="px-2 py-32 bg-transparent md:px-0">
+            <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+                <div class="flex flex-wrap items-center justify-between gap-8 space-y-12 sm:-mx-3">
+                    <div class="w-full md:w-1/2 md:px-3">
+                        <div class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                          <h3 id="title_chart" class="text-2xl font-bold text-left"></h3>
+                            <svg id="chart" width="1000" height="450"></svg>
+                        </div>
+                    </div>
+                    <div class="w-1/2 space-y-2 md:w-1/3">
+                        <h2 class="mb-5 text-2xl font-medium text-gray-600">
+                            <div class="block my-2 text-gray-600 badge badge-outline badge-xl">Section 1</div>
+                            Crop yields across the world
+                        </h2>
+                        <p class="text-lg text-gray-600">
+                            This map plots key crop yields across the world between 1961 and 2018. Toggle between crop types to see how their yields have changed over time.
+                        </p>
+                        <div class="flex flex-row items-center justify-between py-8">
+                            <h2 class="mb-5 text-lg font-medium text-gray-600">
+                                Crop
+                            </h2>
+                            <div class="relative w-2/3">
+                                <div id="dropDownCrop"></div>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-row items-center justify-between">
+                          <h2 class="mb-5 text-lg font-medium text-gray-600">
+                              Year
+                          </h2>
+                          <div class="w-2/3">
+                              <div id="dropDownYear"></div>
+                          </div>
+                      </div>
+                        <div id="tooltip"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex ">
+            <div id="chart_area" class="flex items-center justify-around mx-auto">
+                <div class="flex flex-col p-8 bg-gray-100 border-4 border-gray-300 border-dashed">
+                    <div class="border stats border-base-300">
+                        <div class="stat">
+                            <div class="stat-title">Account balance</div>
+                            <div class="stat-value">$89,400</div>
+                            <div class="stat-actions">
+                                <button class="btn btn-sm btn-success">Add funds</button>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-title">Current balance</div>
+                            <div class="stat-value">$89,400</div>
+                            <div class="stat-actions">
+                                <button class="btn btn-sm btn-primary">Withdrawal</button>
+                                <button class="btn btn-sm btn-primary">deposit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div id="dropDownCrop"></div>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                            <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                    <div id="dropDownYear"></div>
+                    <div id="tooltip"></div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
+
