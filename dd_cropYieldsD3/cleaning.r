@@ -25,7 +25,9 @@ land_use <- land_use %>%
   rename("change" = "Change to land area used for cereal production since 1961") %>% 
   rename("population" = "Total population (Gapminder)") %>% 
   rename_all(tolower) %>% 
-  drop_na()
+  drop_na()  
+
+
 
 write.csv(land_use, "land_use.csv")
 

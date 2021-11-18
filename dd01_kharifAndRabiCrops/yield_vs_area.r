@@ -173,7 +173,7 @@ yield_area_year <- data %>%
 
 # Let us combine all of these plots into one now.
 
-yield / area / yield_area_year
+yield / area / yield_area_yea=r
 
 
 
