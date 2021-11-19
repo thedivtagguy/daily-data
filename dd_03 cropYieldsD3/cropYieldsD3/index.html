@@ -5,6 +5,7 @@
         <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
         <script type="module" src="/main.js"></script>
         <script src="https://d3js.org/d3.v7.min.js"></script>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Demo App</title>
     </head>
@@ -41,7 +42,7 @@
                 <div class="flex flex-wrap items-center justify-between gap-8 space-y-12 sm:-mx-3">
                     <div class="w-full md:w-1/2 md:px-3">
                         <div class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
-                          <h3 id="title_chart" class="text-2xl font-bold text-left"></h3>
+                            <h3 id="title_chart" class="text-2xl font-bold text-left"></h3>
                             <svg id="chart" width="1000" height="450"></svg>
                         </div>
                     </div>
@@ -55,33 +56,32 @@
                         </p>
                         <span class="my-8 text-xs text-gray-500">Change the year and hover on the map to show data here</span>
                         <div class="flex pb-8">
-                          <div class="flex-grow rounded-tl-lg rounded-bl-lg stat ">
-                              <div class="stat-title">Country</div>
-                              <div id="currentCountry" class="w-4 h-6 text-xl stat-value"></div>
-                              <div class="w-24 stat-actions">
-                                <div class="relative ">
-                                  <div id="dropDownCrop"></div>
-                                  <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                                      <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                  </div>
-                              </div>                              </div>
-                          </div>
-                          <div class="flex-grow w-full rounded-tr-lg rounded-br-lg stat">
-                              <div class="stat-title" id="currentYear"></div>
-                              <div class="w-4 h-6 text-xl stat-value" id="currentYield"></div>
-                              <div class="flex flex-grow space-x-4 stat-actions">
-                                <span class="text-gray-500">1961</span>
+                            <div class="flex-grow rounded-tl-lg rounded-bl-lg stat ">
+                                <div class="stat-title">Country</div>
+                                <div id="currentCountry" class="w-4 h-6 text-xl stat-value"></div>
+                                <div class="w-24 stat-actions">
+                                    <div class="relative ">
+                                        <div id="dropDownCrop"></div>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                                            <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow w-full rounded-tr-lg rounded-br-lg stat">
+                                <div class="stat-title" id="currentYear"></div>
+                                <div class="w-4 h-6 text-xl stat-value" id="currentYield"></div>
+                                <div class="flex flex-grow space-x-4 stat-actions">
+                                    <span class="text-gray-500">1961</span>
 
-                                <div id="dropDownYear"></div>
-                                <span class="text-gray-500">2018</span>
+                                    <div id="dropDownYear"></div>
+                                    <span class="text-gray-500">2018</span>
 
-                              </div>
-                          </div>
-                      </div>
-                        <div class="flex flex-row items-center justify-between py-8">
-                           
+                                </div>
+                            </div>
                         </div>
-                        
+                        <div class="flex flex-row items-center justify-between py-8"></div>
+
                         <div id="tooltip"></div>
                     </div>
                 </div>
@@ -89,18 +89,20 @@
         </section>
 
         <!-- Section 3 -->
-        <section class="flex items-center px-2 py-20 bg-transparent justify-items-center md:px-0">
-            <div id="chart2" class="mx-auto"></div>
-        </section>  
+        <section class="flex flex-col items-center px-2 py-20 bg-transparent justify-items-center md:px-0">
+            <div id="chartInfo"></div>
+            <div id="chart2" class="relative mx-auto"></div>
+        </section>
 
     </body>
-   <style>
-       #chart2 .chart {
-  width: 960px;
-  max-height: 900px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-   </style>
+    <style>
+        #chart2 .chart {
+            width: 960px;
+            max-height: 600px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        
+    </style>
 </html>
 
