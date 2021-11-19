@@ -89,16 +89,18 @@
         </section>
 
         <!-- Section 3 -->
-        <section class="px-2 py-20 mx-auto bg-transparent md:px-0">
-          <div id="chart2" class="mx-auto overflow-hidden overflow-y-scroll h-5/6 "></div>
+        <section class="flex items-center px-2 py-20 bg-transparent justify-items-center md:px-0">
+            <div id="chart2" class="mx-auto"></div>
         </section>  
-       <style>
-           #tractortPlot {
-               overflow-y: scroll;
-           }
-        </style>
 
     </body>
-   
+   <style>
+       #chart2 .chart {
+  width: 960px;
+  max-height: 900px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+   </style>
 </html>
 
