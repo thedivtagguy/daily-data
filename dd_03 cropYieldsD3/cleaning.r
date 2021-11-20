@@ -8,7 +8,7 @@
 
 library(tidyverse)
 
-dd <- "dd_cropYieldsD3"
+dd <- "dd_03 cropYieldsD3"
 setwd(glue::glue("D:/DailyData/{dd}/"))
 
 
@@ -37,9 +37,6 @@ long_crops <- key_crop_yields %>%
                values_to = "crop_production") %>% 
   mutate(crop = str_remove_all(crop, " \\(tonnes per hectare\\)")) %>% 
   set_names(nm = names(.) %>% tolower()) %>% 
-  drop_na()
+  mutate(entity = str_replace(entity, "United States", "USA"))
 
-
-long_crops %>% 
-  arrange(-crop_production) %>% 
-  filter(crop == "Rice")
+write.csv(long_crops, glue::glue("{dd}/crop_data.csv"))

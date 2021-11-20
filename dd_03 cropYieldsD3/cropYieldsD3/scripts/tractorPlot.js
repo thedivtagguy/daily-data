@@ -13,7 +13,18 @@ const height = 2500 - margin.top - margin.bottom;
 let info = d3
     .select("#chartInfo")
     .append("div")
-    .attr("class", "info");
+    .attr("class", "info")
+    .attr("class", "my-2");
+
+// Add the chart title
+info
+  .append("text")
+  .attr("x", (width / 2))
+  .attr("y", 0 - (margin.top / 2))
+  .attr("text-anchor", "middle")
+  .attr("class", "mb-5 text-2xl font-medium text-gray-600 capitalize")
+  .text("Change in land use since previous year");
+
 
 let chart = d3
   .select("#chart2")
@@ -94,11 +105,11 @@ d3.csv("data/land_use.csv").then(function (data) {
       d.cumChange +
       `
     </div>`;
+    console.log(event.y);
     tooltip
       .html(html)
-      // Position the tooltip next to the cursor
-      .style("left", event.x / 2 + "px")
-      .style("top", (event.y > 300 ? event.y : event.y - 200) + "px")
+      .style("left", (event.x/2 + 100)   + "px")
+      .style("top", (event.y > 300 ? event.y : event.y - 100) + "px")
       .style("position", "absolute");
   };
 
@@ -135,15 +146,7 @@ d3.csv("data/land_use.csv").then(function (data) {
     .domain([0, d3.max(data, (d) => d.change)])
     .interpolator(d3.interpolateInferno);
 
- // Add the chart title
-    info
-        .append("text")
-        .attr("x", (width / 2))
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")
-        .attr("class", "mb-5 text-2xl font-medium text-gray-600 capitalize")
-        .text("Change in land use since previous year");
-
+ 
   // add the squares
   chart
     .selectAll()
