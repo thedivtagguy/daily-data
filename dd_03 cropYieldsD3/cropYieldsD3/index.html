@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Demo App</title>
     </head>
-    <body
+    <body class="overflow-x-hidden"
         style="background-color:#F0F0EE">
         <!-- Section 1 -->
         <section class="px-2 py-32 bg-transparent md:px-0">
@@ -74,7 +74,6 @@
                                 <div class="w-4 h-6 text-xl stat-value" id="currentYield"></div>
                                 <div class="flex flex-grow space-x-4 stat-actions">
                                     <span class="text-gray-500">1961</span>
-
                                     <div id="dropDownYear"></div>
                                     <span class="text-gray-500">2018</span>
 
@@ -91,8 +90,17 @@
 
         <!-- Section 3 -->
         <section class="flex flex-col items-center px-2 py-20 bg-transparent justify-items-center md:px-0">
+            <div class="flex flex-col items-center py-8 mx-auto justify-items-center">
+                <h2 class="mb-5 text-2xl font-medium text-gray-600">
+                    <span class="text-gray-600 badge badge-outline badge-xl">Section 2</span>
+                    Land Used for Cereal Production
+                </h2>
+                <p class="w-1/2 text-lg text-gray-600">
+                    The amount of land being used to cultivate cereal has been changing over time. This map shows the change in land used for cereal production between 1961 and 2018. Darker colors represent less land being used and lighter colors represent an increase. All changes are shown relative to the previous year, starting from 1961.
+                </p>
+            </div>
             <div id="chartInfo"></div>
-            <div id="chart2" class="relative mx-auto"></div>
+            <div id="chart2" class="relative"></div>
         </section>
 
     </body>

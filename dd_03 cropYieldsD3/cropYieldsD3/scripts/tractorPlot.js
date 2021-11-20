@@ -10,22 +10,6 @@ const margin = {
 const width = 960 - margin.left - margin.right;
 const height = 2500 - margin.top - margin.bottom;
 
-let info = d3
-    .select("#chartInfo")
-    .append("div")
-    .attr("class", "info")
-    .attr("class", "my-2");
-
-// Add the chart title
-info
-  .append("text")
-  .attr("x", (width / 2))
-  .attr("y", 0 - (margin.top / 2))
-  .attr("text-anchor", "middle")
-  .attr("class", "mb-5 text-2xl font-medium text-gray-600 capitalize")
-  .text("Change in land use since previous year");
-
-
 let chart = d3
   .select("#chart2")
   .append("div")
@@ -46,14 +30,6 @@ let axis = d3
   .attr("height", 40)
   .append("g")
   .attr("transform", "translate(" + margin.left + ", 0)");
-
-let legend = d3
-    .select("#chart2")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", 40)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + ", 0)");
 
 // Load the data
 d3.csv("data/land_use.csv").then(function (data) {
@@ -105,11 +81,12 @@ d3.csv("data/land_use.csv").then(function (data) {
       d.cumChange +
       `
     </div>`;
-    console.log(event.y);
+    console.log(event.x, event.y);
+    console.log("Modified:",  0.8*event.x, 0.8*event.y);
     tooltip
       .html(html)
-      .style("left", (event.x/2 + 100)   + "px")
-      .style("top", (event.y > 300 ? event.y : event.y - 100) + "px")
+      .style("left", 0.8*event.x  + "px")
+      .style("top", 0.8*(event.y) + "px")
       .style("position", "absolute");
   };
 

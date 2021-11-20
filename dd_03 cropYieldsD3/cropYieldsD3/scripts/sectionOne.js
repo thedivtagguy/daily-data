@@ -16,57 +16,18 @@ const colorScale = d3
   .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60])
   .range(d3.schemeOrRd[9]);
 
-// Create a legend based on the color scale
 const legend = d3
     .select("#legendOne")
     .append("div")
     .attr("class", "flex flex-col justify-items-start items-start");
 
-legend
-  .append("div")
-  .attr("class", "text-center text-black py-2 font-bold")
-  .text("Yield (t/ha)");
 
-// Out of the colorScale domain, create a legend using the color scale with only 5 colors
 const legendColors = colorScale.domain().map(function(d) {
   return {
     color: colorScale(d),
     label: d
   };
 });
-
-// Create for every 6th color a new list item
-legend
-  .append("ul")
-  .attr("class", "flex flex-wrap")
-  .selectAll("li")
-  .data(legendColors.slice(0, 8))
-  .enter()
-  .append("li")
-  .style("background-color", function(d) {
-    return d.color;
-  })
-  .style("width", "40px")
-  // Html in each list item
-  .html("<span class='px-2'></span>");
-
-// Print value labels
-legend
-  .append("ul")
-  .attr("class", "flex flex-wrap text-center")
-  .selectAll("li")
-  .data(legendColors.slice(0, 8))
-  .enter()
-  .append("li")
-  .attr("class", "text-black")
-  .style("width", "40px")
-  .text(
-    function(d) {
-      return d.label;
-    }
-  )
-
-
 
 const dropDownCrop = d3
   .select("#dropDownCrop")
@@ -108,6 +69,41 @@ Promise.all([
     data.push(d);
   }),
 ]).then(function (loadData) {
+
+  legend
+  .append("div")
+  .attr("class", "text-center text-black py-2 font-bold")
+  .text("Yield (t/ha)");
+
+
+  legend
+  .append("ul")
+  .attr("class", "flex flex-wrap")
+  .selectAll("li")
+  .data(legendColors.slice(0, 8))
+  .enter()
+  .append("li")
+  .style("background-color", function(d) {
+    return d.color;
+  })
+  .style("width", "40px")
+  // Html in each list item
+  .html("<span class='px-2'></span>");
+
+legend
+  .append("ul")
+  .attr("class", "flex flex-wrap text-center")
+  .selectAll("li")
+  .data(legendColors.slice(0, 8))
+  .enter()
+  .append("li")
+  .attr("class", "text-black")
+  .style("width", "40px")
+  .text(
+    function(d) {
+      return d.label;
+    }
+  )
 
 
 
