@@ -7,14 +7,17 @@ const currentYield = d3.select("#currentYield").append("label");
 let svgContainer = d3.select("#chart");
 const years = d3.range(1961, 2019);
 
+
+
 // Create a data array
 const data = [];
 
 // Use d3.interpolateInferno to create a color scale
 const colorScale = d3
   .scaleThreshold()
-  .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60])
-  .range(d3.schemeOrRd[9]);
+  .domain([3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60])
+  // Slice the first color 
+  .range(d3.schemeYlGn[9]);
 
 const legend = d3
     .select("#legendOne")
@@ -152,8 +155,8 @@ legend
         return "#ccc";
       }
     })
-    .attr("stroke", "#eee")
-    .attr("stroke-width", 0.5);
+    .attr("stroke", "#000")
+    .attr("stroke-width", 0.2);
 
   function updateMap(year, crop) {
     yearLabel.text(year);
