@@ -13,3 +13,4 @@ Godspeed.
 | 01 	| Visualizing Kharif and Rabi Crop Production 	| R, ggplot, patchwork, heatmaps 	| [dd01](/dd01_kharifAndRabiCrops)   	|
 | 02 	| Common Sense Media Reviews and Rating       	| R, Python, spaCy, named entity recognition, web scraping 	| [dd02](/dd02_commonSenseMedia)   	|
 | 03 	| Global Crop Yields 	| R, D3, Tailwind, maps, interactive, microsite 	| [dd03](/dd03_cropYieldsD3)   	|
+| 04 	| Digits of Pi 	| Python, D3, Tailwind, Photoshop 	| [dd04](/dd04_digitsPi)   	|
