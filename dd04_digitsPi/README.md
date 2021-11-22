@@ -5,7 +5,7 @@
 |------------	|--------------------------------------------------------------------------------------------------------------------	|-----------------------------------------------------------------------------------------------------	|
 | 22-11-2021 	| Each digit of pi is associated with a certain RBG value. Up to 100,000 digits.	| https://github.com/thedivtagguy/daily-data/blob/master/dd04_digitsPi/pi.csv	|
 
-![Digits of Pi in Color](/pi.png "Image showing a mosaic of digits of pi")
+![Digits of Pi in Color](pi.png "Image showing a mosaic of digits of pi")
 
 
 ### Log 
