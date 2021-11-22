@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  Font-Family: 'Ovo', Serif;
+Font-Size: 42px;
+
+}
+
+p {
+  Font-Family: 'Quattrocento Sans', Sans-Serif;
+Font-Size: 17px;
+
+}
