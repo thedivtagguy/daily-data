@@ -241,5 +241,4 @@ combined + plot_annotation(
   )
 # Save
 plot_name <- "common_sense"
-ggsave(glue::glue("./{dd}/{plot_name}.png"), width = 48, height = 56, units = "cm")
-
+ggsave(glue::glue("./{dd}/{plot_name}.png"), width = 48, height = 56, units = "cm"
