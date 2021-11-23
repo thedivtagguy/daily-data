@@ -1,3 +1,6 @@
+---
+title: Title
+---
 # Daily Data 04
 ## Digits of Pi
 
