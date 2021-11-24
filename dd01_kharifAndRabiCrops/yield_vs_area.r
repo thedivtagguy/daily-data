@@ -33,6 +33,42 @@ area_unit <- "Million Hectares"
 production_unit <- "Million Tonnes"
 yield_unit <- "Kg/Hectare"
 
+library(ggridges)
+library(ggplot2)
+library(viridis)
+
+# basic example
+data %>% 
+  filter(Type != "Total") %>% 
+ggplot(aes(x = Year, y = Production)) +
+ geom_col(aes(fill = Type)) + 
+  scale_fill_manual(values = c("#3f5ea0", "#b46460")) +
+  # We have too many years, lets make it cleaner
+  scale_x_discrete(expand=c(0,0),
+                   breaks=c("1966","1976","1986","1996","2006","2016"))+
+
+  theme_minimal() + 
+  theme(
+    text = element_text(color = "white"),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(1,2,1,2), "cm"),
+    plot.title =  element_text(size = rel(2), hjust = .5,  face = "bold", margin = margin(t = 10, b = 15)),
+    # element_markdown is from ggtext, this is what formats the HTML into the final rendered text
+    plot.subtitle =  element_markdown(size = rel(1), hjust = .5, face = "bold", margin = margin(b = 15)),
+    legend.title = element_text( vjust = 0.8, face = "bold", size = 8),
+    legend.text = element_text( size = 6.5),
+    plot.background = element_rect(fill = "#111111", color = NA),
+    panel.spacing.x  = unit(3, "cm"),
+    panel.background = element_blank(),
+    panel.spacing.y  = unit(5, "cm"),
+    axis.text.x = element_markdown(size = 15, color = "white"),
+    strip.text = element_markdown(color = "white"),
+    legend.position = "top",
+    axis.text.y = element_text(color = "white", size = 12)
+  ) + 
+  labs(x = NULL, y = NULL,
+       fill = glue::glue("Production in Million Tonnes")) + 
+  facet_grid(rows = vars(Type))
 
 #######################################################################################
 #                                                                                     #
@@ -173,7 +209,7 @@ yield_area_year <- data %>%
 
 # Let us combine all of these plots into one now.
 
-yield / area / yield_area_yea=r
+yield / area / yield_area_year
 
 
 
