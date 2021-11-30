@@ -41,7 +41,8 @@ library(viridis)
 data %>% 
   filter(Type != "Total") %>% 
 ggplot(aes(x = Year, y = Production)) +
- geom_col(aes(fill = Type)) + 
+ geom_point(aes(color = Type)) +
+  geom_line(aes(group = 1), color = "white", alpha = 0.5)+
   scale_fill_manual(values = c("#3f5ea0", "#b46460")) +
   # We have too many years, lets make it cleaner
   scale_x_discrete(expand=c(0,0),
